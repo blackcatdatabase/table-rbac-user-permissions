@@ -1,21 +1,4 @@
--- Auto-generated from schema-views-mysql.psd1 (map@db2f8b8)
--- engine: mysql
--- table:  rbac_user_permissions
--- Contract view for [rbac_user_permissions]
-CREATE OR REPLACE ALGORITHM=MERGE SQL SECURITY INVOKER VIEW vw_rbac_user_permissions AS
-SELECT
-  id,
-  user_id,
-  permission_id,
-  tenant_id,
-  scope,
-  effect,
-  granted_by,
-  granted_at,
-  expires_at
-FROM rbac_user_permissions;
-
--- Auto-generated from schema-views-mysql.psd1 (map@db2f8b8)
+-- Auto-generated from schema-views-mysql.psd1 (map@62c9c93)
 -- engine: mysql
 -- table:  rbac_user_permissions_conflicts
 -- Potential conflicts: same (user,perm,tenant,scope) both allowed and denied
@@ -50,8 +33,25 @@ JOIN denied d
  AND COALESCE(d.scope, '') = COALESCE(a.scope, '')
 JOIN permissions p ON p.id = a.permission_id;
 
+-- Auto-generated from schema-views-mysql.psd1 (map@62c9c93)
+-- engine: mysql
+-- table:  rbac_user_permissions
+-- Contract view for [rbac_user_permissions]
+CREATE OR REPLACE ALGORITHM=MERGE SQL SECURITY INVOKER VIEW vw_rbac_user_permissions AS
+SELECT
+  id,
+  user_id,
+  permission_id,
+  tenant_id,
+  scope,
+  effect,
+  granted_by,
+  granted_at,
+  expires_at
+FROM rbac_user_permissions;
 
--- Auto-generated from schema-views-mysql.psd1 (map@db2f8b8)
+
+-- Auto-generated from schema-views-mysql.psd1 (map@62c9c93)
 -- engine: mysql
 -- table:  rbac_user_permissions_effective
 -- Effective permissions per user (Deny > Allow), including tenant/scope

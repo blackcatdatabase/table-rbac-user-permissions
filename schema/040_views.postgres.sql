@@ -1,4 +1,4 @@
--- Auto-generated from schema-views-postgres.psd1 (map@9d3471b)
+-- Auto-generated from schema-views-postgres.psd1 (map@62c9c93)
 -- engine: postgres
 -- table:  rbac_user_permissions_conflicts
 -- Potential conflicts: same (user,perm,tenant,scope) both allowed and denied
@@ -27,7 +27,7 @@ JOIN d ON d.user_id=a.user_id AND d.permission_id=a.permission_id
       AND COALESCE(d.scope,'')=COALESCE(a.scope,'')
 JOIN permissions p ON p.id=a.permission_id;
 
--- Auto-generated from schema-views-postgres.psd1 (map@9d3471b)
+-- Auto-generated from schema-views-postgres.psd1 (map@62c9c93)
 -- engine: postgres
 -- table:  rbac_user_permissions
 -- Contract view for [rbac_user_permissions]
@@ -37,7 +37,7 @@ SELECT
 FROM rbac_user_permissions;
 
 
--- Auto-generated from schema-views-postgres.psd1 (map@9d3471b)
+-- Auto-generated from schema-views-postgres.psd1 (map@62c9c93)
 -- engine: postgres
 -- table:  rbac_user_permissions_effective
 -- Effective permissions per user (Deny > Allow), including tenant/scope

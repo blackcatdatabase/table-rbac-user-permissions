@@ -1,4 +1,4 @@
--- Auto-generated from joins-postgres.yaml (map@85230ed)
+-- Auto-generated from joins-postgres.yaml (map@sha1:819A7F0638F1D5C0A86E37B6E574CC5689B6F3EE)
 -- engine: postgres
 -- view:   rbac_user_permissions_conflicts
 
@@ -33,7 +33,7 @@ JOIN denied d
  AND COALESCE(d.scope, '''') = COALESCE(a.scope, '''')
 JOIN permissions p ON p.id = a.permission_id;
 
--- Auto-generated from joins-postgres.yaml (map@85230ed)
+-- Auto-generated from joins-postgres.yaml (map@sha1:819A7F0638F1D5C0A86E37B6E574CC5689B6F3EE)
 -- engine: postgres
 -- view:   rbac_user_permissions_effective
 
@@ -66,7 +66,7 @@ LEFT JOIN denies d
 WHERE d.permission_id IS NULL;
 
 
--- Auto-generated from joins-postgres.yaml (map@85230ed)
+-- Auto-generated from joins-postgres.yaml (map@sha1:29CF395A3A4C8964482083733F8E613ABFBEF5CC)
 -- engine: postgres
 -- view:   rbac_conflicts
 

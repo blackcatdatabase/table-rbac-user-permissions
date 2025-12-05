@@ -1,4 +1,4 @@
--- Auto-generated from joins-mysql.yaml (map@85230ed)
+-- Auto-generated from joins-mysql.yaml (map@sha1:EE82A7850EC6293657D1C6EF6C7ED287EDF31EB3)
 -- engine: mysql
 -- view:   rbac_user_permissions_conflicts
 
@@ -34,7 +34,7 @@ JOIN denied d
  AND COALESCE(d.scope, '') = COALESCE(a.scope, '')
 JOIN permissions p ON p.id = a.permission_id;
 
--- Auto-generated from joins-mysql.yaml (map@85230ed)
+-- Auto-generated from joins-mysql.yaml (map@sha1:EE82A7850EC6293657D1C6EF6C7ED287EDF31EB3)
 -- engine: mysql
 -- view:   rbac_user_permissions_effective
 
@@ -68,7 +68,7 @@ LEFT JOIN denies d
 WHERE d.permission_id IS NULL;
 
 
--- Auto-generated from joins-mysql.yaml (map@85230ed)
+-- Auto-generated from joins-mysql.yaml (map@sha1:DA70105A5B799F72A56FEAB71A5171F946A770D2)
 -- engine: mysql
 -- view:   rbac_conflicts
 

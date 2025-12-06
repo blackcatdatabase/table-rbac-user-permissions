@@ -22,7 +22,7 @@ use BlackCat\Core\Database;
 final class Criteria extends BaseCriteria
 {
     /** Hard clamp perPage to [1..maxPerPage] for this repo. */
-    protected function perPage(): int
+    public function perPage(): int
     {
         $pp = (int) parent::perPage();
         $pp = max(1, $pp);
@@ -41,12 +41,11 @@ final class Criteria extends BaseCriteria
         return [ 'scope' ];
     }
 
-    /** Columns allowed in ORDER BY (falls back to filterable() when empty). */
-    protected function sortable(): array
-    {
-        $x = [ 'id', 'user_id', 'permission_id', 'tenant_id', 'scope', 'effect', 'granted_by', 'granted_at', 'expires_at' ];
-        return $x ?: $this->filterable();
-    }
+/** Columns allowed in ORDER BY (falls back to filterable() when empty). */
+protected function sortable(): array
+{
+    return [ 'id', 'user_id', 'permission_id', 'tenant_id', 'scope', 'effect', 'granted_by', 'granted_at', 'expires_at' ];
+}
 
     /**
      * Whitelist of joinable entities (for safe ->join() usage):
@@ -87,8 +86,8 @@ final class Criteria extends BaseCriteria
         $c = new static(); // previously: new self()
 
         $c->setDialectFromDatabase($db);
-        if ($quoteIdentifiers) { $c->quoteIdentifiers(true); }
-        if ($tenantId !== null) { $c->tenant($tenantId, $tenantColumn); }
+        if ($quoteIdentifiers) { $c->enableIdentifierQuoting(true); }
+        if ($tenantId !== null && $tenantColumn !== '') { $c->tenant($tenantId, $tenantColumn); }
 
         if (\method_exists(\BlackCat\Database\Packages\RbacUserPermissions\Definitions::class, 'softDeleteColumn')) {
             $soft = \BlackCat\Database\Packages\RbacUserPermissions\Definitions::softDeleteColumn();
@@ -99,17 +98,17 @@ final class Criteria extends BaseCriteria
 
     // --- Generated criteria helpers (per table) ---
     
-    public function byId(int|string $id): self {
-        return $this->where('t.id = :cid', ['cid' => $id]);
+    public function byId(int|string $id): static {
+        return $this->where('id', '=', $id);
     }
-    public function byIds(array $ids): self {
-        if (!$ids) return $this->where('1=0');
-        return $this->whereIn('t.id', array_values($ids));
+    public function byIds(array $ids): static {
+        if (!$ids) return $this->whereRaw('1=0');
+        return $this->where('id', 'IN', array_values($ids));
     }
     /** @param int|string|array<int,int|string> $tenantId */
-    public function forTenant(int|string|array $tenantId): self {
-        if (is_array($tenantId)) { return $this->whereIn('t.tenant_id', $tenantId); }
-        return $this->where('t.tenant_id = :tid', ['tid' => $tenantId]);
+    public function forTenant(int|string|array $tenantId): static {
+        if (is_array($tenantId)) { return $this->where('tenant_id', 'IN', $tenantId); }
+        return $this->where('tenant_id', '=', $tenantId);
     }
 
 }

@@ -17,7 +17,7 @@ use BlackCat\Database\Support\DtoHydrator;
 final class RbacUserPermissionDtoMapper
 {
     /** @var array<string,string> Column -> DTO property */
-    private const COL_TO_PROP = [ 'user_id' => 'userId', 'permission_id' => 'permissionId', 'tenant_id' => 'tenantId', 'granted_by' => 'grantedBy', 'granted_at' => 'grantedAt', 'expires_at' => 'expiresAt' ];
+    private const COL_TO_PROP = [ 'id' => 'id', 'user_id' => 'userId', 'permission_id' => 'permissionId', 'tenant_id' => 'tenantId', 'scope' => 'scope', 'effect' => 'effect', 'granted_by' => 'grantedBy', 'granted_at' => 'grantedAt', 'expires_at' => 'expiresAt' ];
 
     /** @var string[] */
     private const BOOL_COLS   = [];
@@ -39,13 +39,8 @@ final class RbacUserPermissionDtoMapper
 
     private static function tz(): DateTimeZone
     {
-        if (self::$tzObj instanceof DateTimeZone) {
-            return self::$tzObj;
-        }
-        try {
+        if (!(self::$tzObj instanceof DateTimeZone)) {
             self::$tzObj = new DateTimeZone(self::TZ);
-        } catch (\Throwable) {
-            self::$tzObj = new DateTimeZone('UTC');
         }
         return self::$tzObj;
     }

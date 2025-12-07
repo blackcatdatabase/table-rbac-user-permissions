@@ -1,40 +1,5 @@
 -- Auto-generated from joins-postgres.yaml (map@sha1:819A7F0638F1D5C0A86E37B6E574CC5689B6F3EE)
 -- engine: postgres
--- view:   rbac_user_permissions_conflicts
-
-CREATE OR REPLACE VIEW vw_rbac_conflicts AS
-WITH allowed AS (
-  SELECT user_id, permission_id, tenant_id, scope FROM rbac_user_permissions WHERE effect=$$allow$$
-  UNION
-  SELECT ur.user_id, rp.permission_id, ur.tenant_id, ur.scope
-  FROM rbac_user_roles ur
-  JOIN rbac_role_permissions rp ON rp.role_id = ur.role_id AND rp.effect=$$allow$$
-  WHERE ur.status=$$active$$ AND (ur.expires_at IS NULL OR ur.expires_at > now())
-),
-denied AS (
-  SELECT user_id, permission_id, tenant_id, scope FROM rbac_user_permissions WHERE effect=$$deny$$
-  UNION
-  SELECT ur.user_id, rp.permission_id, ur.tenant_id, ur.scope
-  FROM rbac_user_roles ur
-  JOIN rbac_role_permissions rp ON rp.role_id = ur.role_id AND rp.effect=$$deny$$
-  WHERE ur.status=$$active$$ AND (ur.expires_at IS NULL OR ur.expires_at > now())
-)
-SELECT DISTINCT
-  a.user_id,
-  a.permission_id,
-  p.name AS permission_name,
-  a.tenant_id,
-  a.scope
-FROM allowed a
-JOIN denied d
-  ON d.user_id = a.user_id
- AND d.permission_id = a.permission_id
- AND COALESCE(d.tenant_id, -1) = COALESCE(a.tenant_id, -1)
- AND COALESCE(d.scope, '''') = COALESCE(a.scope, '''')
-JOIN permissions p ON p.id = a.permission_id;
-
--- Auto-generated from joins-postgres.yaml (map@sha1:819A7F0638F1D5C0A86E37B6E574CC5689B6F3EE)
--- engine: postgres
 -- view:   rbac_user_permissions_effective
 
 CREATE OR REPLACE VIEW vw_rbac_effective_permissions AS
@@ -64,7 +29,6 @@ LEFT JOIN denies d
  AND COALESCE(d.tenant_id, -1) = COALESCE(a.tenant_id, -1)
  AND COALESCE(d.scope, $$ $$) = COALESCE(a.scope, $$ $$)
 WHERE d.permission_id IS NULL;
-
 
 -- Auto-generated from joins-postgres.yaml (map@sha1:29CF395A3A4C8964482083733F8E613ABFBEF5CC)
 -- engine: postgres

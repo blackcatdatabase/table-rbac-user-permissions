@@ -5,9 +5,9 @@ Direct permission grants to users (outside of roles).
 ## Columns
 | Column | Type | Null | Default | Description |
 | --- | --- | --- | --- | --- |
-| effect | TEXT | NO | allow | Allow or deny flag. (enum: allow, deny) |
-| expires_at | TIMESTAMPTZ(6) | YES |  | Optional expiration time (UTC). |
-| granted_at | TIMESTAMPTZ(6) | NO | CURRENT_TIMESTAMP(6) | Grant timestamp (UTC). |
+| effect | ENUM('allow','deny') | NO | allow | Allow or deny flag. (enum: allow, deny) |
+| expires_at | DATETIME(6) | YES |  | Optional expiration time (UTC). |
+| granted_at | DATETIME(6) | NO | CURRENT_TIMESTAMP(6) | Grant timestamp (UTC). |
 | granted_by | BIGINT | YES |  | User/admin who granted the permission. |
 | id | BIGINT | NO |  | Surrogate primary key. |
 | permission_id | BIGINT | NO |  | Permission id (FK permissions.id). |
@@ -66,9 +66,9 @@ Foreign keys:
 ## Views
 | View | Engine | Flags | File |
 | --- | --- | --- | --- |
-| vw_rbac_conflicts | mysql | algorithm=TEMPTABLE, security=INVOKER | [packages\rbac-user-permissions\schema\040_views_joins.mysql.sql](https://github.com/blackcatacademy/blackcat-database/packages/rbac-user-permissions/schema/040_views_joins.mysql.sql) |
-| vw_rbac_effective_permissions | mysql | algorithm=TEMPTABLE, security=INVOKER | [packages\rbac-user-permissions\schema\040_views_joins.mysql.sql](https://github.com/blackcatacademy/blackcat-database/packages/rbac-user-permissions/schema/040_views_joins.mysql.sql) |
-| vw_rbac_user_permissions | mysql | algorithm=MERGE, security=INVOKER | [packages\rbac-user-permissions\schema\040_views.mysql.sql](https://github.com/blackcatacademy/blackcat-database/packages/rbac-user-permissions/schema/040_views.mysql.sql) |
-| vw_rbac_conflicts | postgres |  | [packages\rbac-user-permissions\schema\040_views_joins.postgres.sql](https://github.com/blackcatacademy/blackcat-database/packages/rbac-user-permissions/schema/040_views_joins.postgres.sql) |
-| vw_rbac_effective_permissions | postgres |  | [packages\rbac-user-permissions\schema\040_views_joins.postgres.sql](https://github.com/blackcatacademy/blackcat-database/packages/rbac-user-permissions/schema/040_views_joins.postgres.sql) |
-| vw_rbac_user_permissions | postgres |  | [packages\rbac-user-permissions\schema\040_views.postgres.sql](https://github.com/blackcatacademy/blackcat-database/packages/rbac-user-permissions/schema/040_views.postgres.sql) |
+| vw_rbac_conflicts | mysql | algorithm=TEMPTABLE, security=INVOKER | [schema\040_views_joins.mysql.sql](schema\040_views_joins.mysql.sql) |
+| vw_rbac_effective_permissions | mysql | algorithm=TEMPTABLE, security=INVOKER | [schema\040_views_joins.mysql.sql](schema\040_views_joins.mysql.sql) |
+| vw_rbac_user_permissions | mysql | algorithm=MERGE, security=INVOKER | [schema\040_views.mysql.sql](schema\040_views.mysql.sql) |
+| vw_rbac_conflicts | postgres |  | [schema\040_views_joins.postgres.sql](schema\040_views_joins.postgres.sql) |
+| vw_rbac_effective_permissions | postgres |  | [schema\040_views_joins.postgres.sql](schema\040_views_joins.postgres.sql) |
+| vw_rbac_user_permissions | postgres |  | [schema\040_views.postgres.sql](schema\040_views.postgres.sql) |

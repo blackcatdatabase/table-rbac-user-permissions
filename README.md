@@ -17,7 +17,7 @@
 | What | Link | Notes |
 | --- | --- | --- |
 | Schema map | [schema-map-postgres.yaml](https://github.com/blackcatacademy/blackcat-database/blob/main/scripts/schema/schema-map-postgres.yaml) | Source for table metadata |
-| Pkg folder | [packages\rbac-user-permissions](https://github.com/blackcatacademy/blackcat-database/blob/main/packages\rbac-user-permissions) | Repo location |
+| Pkg folder | [packages\rbac-user-permissions](https://github.com/blackcatacademy/blackcat-database/blob/main/packages/rbac-user-permissions) | Repo location |
 | Definitions | [docs/definitions.md](docs/definitions.md) | Column/index/FK docs |
 | Engine differences | [docs/definitions.md#engine-differences](docs/definitions.md#engine-differences) | Drift section in definitions |
 | Changelog | [CHANGELOG.md](CHANGELOG.md) | Recent changes |
@@ -100,8 +100,8 @@ graph LR
 _No engine differences detected._
 
 ## Constraints Snapshot
-- `effect` – default=allow, enum
 - `granted_at` – default=CURRENT_TIMESTAMP(6)
+- `effect` – default=allow, enum
 
 ## Schema Files
 | File | Engine |

@@ -78,9 +78,9 @@ graph LR
   classDef accent fill:#1d1b4c,stroke:#a855f7,stroke-width:2px,color:#f5e1ff;
   classDef inbound fill:#0f172a,stroke:#10b981,stroke-width:2px,color:#e2fcef;
   rbac_user_permissions["rbac_user_permissions"]:::center
+  rbac_user_permissions -->|FK| permissions["permissions"]:::link
+  rbac_user_permissions -->|FK| tenants["tenants"]:::accent
   rbac_user_permissions -->|FK| users["users"]:::link
-  rbac_user_permissions -->|FK| permissions["permissions"]:::accent
-  rbac_user_permissions -->|FK| tenants["tenants"]:::link
   linkStyle 0 stroke:#ff6b6b,stroke-width:3px,opacity:0.92;
   linkStyle 1 stroke:#64dfdf,stroke-width:3px,opacity:0.92;
   linkStyle 2 stroke:#a855f7,stroke-width:3px,opacity:0.92;
@@ -100,8 +100,8 @@ graph LR
 _No engine differences detected._
 
 ## Constraints Snapshot
-- `granted_at` – default=CURRENT_TIMESTAMP(6)
 - `effect` – default=allow, enum
+- `granted_at` – default=CURRENT_TIMESTAMP(6)
 
 ## Schema Files
 | File | Engine |

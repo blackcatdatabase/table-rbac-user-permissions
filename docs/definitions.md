@@ -5,15 +5,15 @@ Direct permission grants to users (outside of roles).
 ## Columns
 | Column | Type | Null | Default | Description |
 | --- | --- | --- | --- | --- |
-| scope | VARCHAR(120) | YES |  | Additional scope qualifier (string). |
+| effect | mysql: ENUM('allow','deny') / postgres: TEXT | NO | allow | Allow or deny flag. (enum: allow, deny) |
+| expires_at | mysql: DATETIME(6) / postgres: TIMESTAMPTZ(6) | YES |  | Optional expiration time (UTC). |
 | granted_at | mysql: DATETIME(6) / postgres: TIMESTAMPTZ(6) | NO | CURRENT_TIMESTAMP(6) | Grant timestamp (UTC). |
+| granted_by | BIGINT | YES |  | User/admin who granted the permission. |
 | id | BIGINT | NO |  | Surrogate primary key. |
 | permission_id | BIGINT | NO |  | Permission id (FK permissions.id). |
-| granted_by | BIGINT | YES |  | User/admin who granted the permission. |
+| scope | VARCHAR(120) | YES |  | Additional scope qualifier (string). |
 | tenant_id | BIGINT | YES |  | Tenant scope, optional. |
 | user_id | BIGINT | NO |  | User receiving the grant (FK users.id). |
-| expires_at | mysql: DATETIME(6) / postgres: TIMESTAMPTZ(6) | YES |  | Optional expiration time (UTC). |
-| effect | mysql: ENUM('allow','deny') / postgres: TEXT | NO | allow | Allow or deny flag. (enum: allow, deny) |
 
 ## Engine Details
 

@@ -41,11 +41,11 @@ final class Criteria extends BaseCriteria
         return [ 'scope' ];
     }
 
-/** Columns allowed in ORDER BY (falls back to filterable() when empty). */
-protected function sortable(): array
-{
-    return [ 'id', 'user_id', 'permission_id', 'tenant_id', 'scope', 'effect', 'granted_by', 'granted_at', 'expires_at' ];
-}
+    /** Columns allowed in ORDER BY (falls back to filterable() when empty). */
+    protected function sortable(): array
+    {
+        return [ 'id', 'user_id', 'permission_id', 'tenant_id', 'scope', 'effect', 'granted_by', 'granted_at', 'expires_at' ];
+    }
 
     /**
      * Whitelist of joinable entities (for safe ->join() usage):

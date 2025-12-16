@@ -1,6 +1,6 @@
 # 📦 Rbac User Permissions
 
-> Auto-generated from [schema-map-postgres.yaml](https://github.com/blackcatacademy/blackcat-database/blob/main/scripts/schema/schema-map-postgres.yaml) (map@sha1:5221bb5c65d0fbe010594635f9efb6fc13c307b2). Do not edit manually.
+> Auto-generated from [schema-map-postgres.yaml](https://github.com/blackcatacademy/blackcat-database/blob/main/scripts/schema/schema-map-postgres.yaml) (map@sha1:b652427bb7925a0767501463b726cc7a44fd195c). Do not edit manually.
 > Targets: PHP 8.3; MySQL 8.x / MariaDB 10.4; Postgres 15+.
 
 ![PHP](https://img.shields.io/badge/PHP-8.3-blueviolet) ![DB](https://img.shields.io/badge/DB-MySQL%20%7C%20MariaDB%20%7C%20Postgres-informational) ![License](https://img.shields.io/badge/license-BlackCat%20Proprietary-red) ![Status](https://img.shields.io/badge/status-stable-success)
@@ -11,13 +11,13 @@
 
 > **Schema snapshot**
 > Map: [schema-map-postgres.yaml](https://github.com/blackcatacademy/blackcat-database/blob/main/scripts/schema/schema-map-postgres.yaml) · Docs: [docs/definitions.md](docs/definitions.md) · Drift warnings: 0
-> Lineage: 3 outbound / 0 inbound · ✅ No engine drift detected · Index coverage: ready · PII flags: 1 · Changelog: fresh (0 d)
+> Lineage: 3 outbound / 0 inbound · ✅ No engine drift detected · Index coverage: ready · PII flags: 1 · Changelog: fresh
 
 ## Quick Links
 | What | Link | Notes |
 | --- | --- | --- |
 | Schema map | [schema-map-postgres.yaml](https://github.com/blackcatacademy/blackcat-database/blob/main/scripts/schema/schema-map-postgres.yaml) | Source for table metadata |
-| Pkg folder | [packages\rbac-user-permissions](https://github.com/blackcatacademy/blackcat-database/blob/main/packages\rbac-user-permissions) | Repo location |
+| Pkg folder | [packages/rbac-user-permissions](https://github.com/blackcatacademy/blackcat-database/blob/main/packages/rbac-user-permissions) | Repo location |
 | Definitions | [docs/definitions.md](docs/definitions.md) | Column/index/FK docs |
 | Engine differences | [docs/definitions.md#engine-differences](docs/definitions.md#engine-differences) | Drift section in definitions |
 | Changelog | [CHANGELOG.md](CHANGELOG.md) | Recent changes |
@@ -63,7 +63,7 @@
 | Seeds | **0** |
 | Docs | **present** |
 | Changelog | **present** |
-| Changelog freshness | fresh (0 days; threshold 45) |
+| Changelog freshness | fresh (threshold 45 d) |
 | Lineage | outbound **3** / inbound **0** |
 | Index coverage | **ready** |
 | Engine targets | PHP 8.3; MySQL/MariaDB/Postgres |
@@ -78,9 +78,9 @@ graph LR
   classDef accent fill:#1d1b4c,stroke:#a855f7,stroke-width:2px,color:#f5e1ff;
   classDef inbound fill:#0f172a,stroke:#10b981,stroke-width:2px,color:#e2fcef;
   rbac_user_permissions["rbac_user_permissions"]:::center
+  rbac_user_permissions -->|FK| permissions["permissions"]:::link
+  rbac_user_permissions -->|FK| tenants["tenants"]:::accent
   rbac_user_permissions -->|FK| users["users"]:::link
-  rbac_user_permissions -->|FK| permissions["permissions"]:::accent
-  rbac_user_permissions -->|FK| tenants["tenants"]:::link
   linkStyle 0 stroke:#ff6b6b,stroke-width:3px,opacity:0.92;
   linkStyle 1 stroke:#64dfdf,stroke-width:3px,opacity:0.92;
   linkStyle 2 stroke:#a855f7,stroke-width:3px,opacity:0.92;

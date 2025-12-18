@@ -1,0 +1,35 @@
+{
+  "tables": {
+    "rbac_user_permissions": {
+      "columns": {
+        "effect": {
+          "strategy": "passthrough"
+        },
+        "expires_at": {
+          "strategy": "passthrough"
+        },
+        "granted_at": {
+          "strategy": "passthrough"
+        },
+        "granted_by": {
+          "strategy": "passthrough"
+        },
+        "id": {
+          "strategy": "passthrough"
+        },
+        "permission_id": {
+          "strategy": "passthrough"
+        },
+        "scope": {
+          "strategy": "passthrough"
+        },
+        "tenant_id": {
+          "strategy": "passthrough"
+        },
+        "user_id": {
+          "strategy": "passthrough"
+        }
+      }
+    }
+  }
+}
